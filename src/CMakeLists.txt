@@ -30,6 +30,7 @@ target_link_libraries(
   tifflib
   ${CXXOPTS}
   ${X11}
+  OSMesa
   "glad"
   glfw
   OpenGL

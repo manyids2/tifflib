@@ -50,6 +50,7 @@ public:
     glCompileShader(vertex);
     checkCompileErrors(vertex, "VERTEX");
     // fragment Shader
+    std::cout << "Creating fragment shader ..." << std::endl;
     fragment = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragment, 1, &fShaderCode, NULL);
     glCompileShader(fragment);
@@ -149,4 +150,3 @@ private:
   }
 };
 #endif
-

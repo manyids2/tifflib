@@ -21,20 +21,6 @@ private:
   float lastTime;
   float debounce = 0;
 
-  // Mouse Input
-  double lastMouseX;
-  double lastMouseY;
-  double lastScale;
-  double mouseX;
-  double mouseY;
-  bool panning;
-
-  // Variables
-  const int WINDOW_WIDTH;
-  const int WINDOW_HEIGHT;
-  int framebufferWidth;
-  int framebufferHeight;
-
   // Tiling
   int tileSize = 256;
   int gridCount = 0;
@@ -55,27 +41,32 @@ private:
   void initWindow();
   void initShaders();
   void initVertices(int width, int height);
-  void initThumbnail();
 
 public:
   GLFWwindow *window;
 
+  // Variables
+  const int width = 500;
+  const int height = 500;
+  int framebufferWidth = 500;
+  int framebufferHeight = 500;
+  uint compression = 0;
+  uint millis = 10;
+
+  // Open mesa shite
+  OSMesaContext ctx;
+  uint8_t *buffer;
+  uint lh = height / 18;
+  uint frame;
+  size_t len;
+  pos p;
+
   // Constructors / Destructors
-  Window(const int WINDOW_WIDTH, const int WINDOW_HEIGHT);
+  Window(const int width, const int height);
   virtual ~Window();
 
-  void setSlideprops(SlideProps slide);
-
   void updateDt();
-
-  void handlePanning();
-  void handleZooming();
-  void updateMouseInput();
-  void updateTiles();
-
   void updateKeyboardInput();
-
-  void drawThumbnail();
   void clear();
   void update();
   void render();
