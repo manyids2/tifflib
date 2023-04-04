@@ -1,7 +1,5 @@
 #include "kitty_util.h"
 
-namespace kitty {
-
 size_t kitty_send_rgba(char cmd, uint32_t id, uint32_t compression,
                        const uint8_t *color_pixels, uint32_t width,
                        uint32_t height) {
@@ -237,5 +235,3 @@ void kitty_restore_termios() {
   /* restore termios */
   tcsetattr(0, TCSANOW, _get_termios_backup());
 }
-
-} // namespace kitty

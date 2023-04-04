@@ -32,7 +32,7 @@
  * $Id: base64.c 156 2007-07-12 23:29:10Z orange $
  */
 
-namespace kitty {
+using namespace std;
 
 const uint8_t base64enc_tab[] =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -91,5 +91,3 @@ struct termios *_get_termios_raw();
 void kitty_setup_termios();
 
 void kitty_restore_termios();
-
-} // namespace kitty

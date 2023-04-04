@@ -3,7 +3,16 @@ set(CMAKE_CXX_FLAGS
 
 # Actual executable
 message("-- Adding: tifflib")
-set(sources tifflib.cpp kitty_util.h kitty_util.cpp gl_util.h gl_util.cpp)
+set(sources
+    tifflib.cpp
+    kitty_util.h
+    kitty_util.cpp
+    gl_util.h
+    gl_util.cpp
+    slide.h
+    slide.cpp
+    fs.h
+    fs.cpp)
 add_executable(tifflib ${sources})
 
 # Linking libraries

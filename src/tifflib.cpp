@@ -1,5 +1,6 @@
 // To display version number
 #include "kitty_util.h"
+#include "slide.h"
 #include <cxxopts.hpp>
 #include <iostream>
 
@@ -9,9 +10,9 @@ int main(int argc, char **argv) {
   // clang-format off
   options.add_options()
     ( "f,slidepath", "Path to slide",
-      cxxopts::value<std::string>()->default_value("../data/aperio/CMU-1.svs"))
+      cxxopts::value<std::string>()->default_value("/data/slides/aperio/CMU-1.svs"))
     ( "m,maskpath", "Path to mask",
-      cxxopts::value<std::string>()->default_value("../data/dlup/slide1.itiff"))
+      cxxopts::value<std::string>()->default_value("/data/slides/dlup/slide1.itiff"))
     ("h,help", "Print usage");
   // clang-format on
 
@@ -25,6 +26,9 @@ int main(int argc, char **argv) {
   std::string slidepath;
   slidepath = result["slidepath"].as<std::string>();
   std::cout << slidepath << std::endl;
+
+  SlideProps slide = get_slideprops(slidepath);
+  print_slideprops(slide);
 
   std::string maskpath;
   maskpath = result["maskpath"].as<std::string>();
