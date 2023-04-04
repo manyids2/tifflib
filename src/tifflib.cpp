@@ -33,5 +33,16 @@ int main(int argc, char **argv) {
   maskpath = result["maskpath"].as<std::string>();
   std::cout << maskpath << std::endl;
 
+  Window win(1000, 1000);
+  win.setSlideprops(slide);
+  win.setShowing(true);
+
+  // MAIN LOOP
+  while (win.getShowing()) {
+    win.clear();
+    win.update();
+    win.render();
+  }
+
   return 0;
 }

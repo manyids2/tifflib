@@ -92,8 +92,8 @@ void Window::initGLFW() {
 
 void Window::initShaders() {
   // build and compile our shader program
-  Shader ourShader("../include/internal/shaders/viewShader.vs",
-                   "../include/internal/shaders/viewShader.fs");
+  Shader ourShader("../include/shaders/viewShader.vs",
+                   "../include/shaders/viewShader.fs");
   this->shaderProgram = ourShader.ID;
   ourShader.use();
 }
