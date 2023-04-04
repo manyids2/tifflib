@@ -19,4 +19,9 @@ find_package(glfw3 REQUIRED)
 pkg_check_modules(OPENSLIDE IMPORTED_TARGET REQUIRED openslide)
 pkg_check_modules(CXXOPTS IMPORTED_TARGET REQUIRED cxxopts)
 
+find_package(glm REQUIRED)
+include_directories(${GLM_INCLUDE_DIRS})
+link_directories(${GLM_LIBRARY_DIRS})
+add_definitions(${GLM_DEFINITIONS})
+
 add_subdirectory(src)

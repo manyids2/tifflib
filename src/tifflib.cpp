@@ -1,6 +1,5 @@
 // To display version number
-#include "kitty_util.h"
-#include "slide.h"
+#include "window.h"
 #include <cxxopts.hpp>
 #include <iostream>
 

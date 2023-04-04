@@ -18,7 +18,7 @@ Serve matched whole slide images and integer masks of different mpps.
 
 ## General Options
 
-**-f** _&lt;[h|q|k|i]&gt;_, **-\-filepath**=_[h|q|k|i]_
+**-f** _&lt;[h|q|k|i]&gt;_, **-\-slidepath**=_[h|q|k|i]_
 : path to whole slide image
 
 **-m** _&lt;[h|q|k|i]&gt;_, **-\-maskpath**=_[h|q|k|i]_
