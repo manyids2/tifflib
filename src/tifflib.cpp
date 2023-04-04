@@ -1,5 +1,5 @@
 // To display version number
-#include "openslide-source.h"
+#include "kitty_util.h"
 #include <cxxopts.hpp>
 #include <iostream>
 

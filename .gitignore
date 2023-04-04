@@ -1,5 +1,14 @@
 build/
-data/
+reference/
+.cmake/
 .cache/
-__pycache__/
-*.egg-info/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+data/aperio/CMU-1/image.wsi
+data/aperio/CMU-1-JP2K-33005.svs
+data/aperio/CMU-1-Small-Region.svs
+data/aperio/JP2K-33003-1.svs
+data/dlup/slide1.itiff

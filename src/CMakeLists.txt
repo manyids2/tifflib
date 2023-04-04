@@ -1,24 +1,27 @@
-set(CMAKE_CXX_FLAGS "-W -Wall -Wextra -Wno-unused-parameter -O3 ${CMAKE_CXX_FLAGS}")
+set(CMAKE_CXX_FLAGS
+    "-W -Wall -Wextra -Wno-unused-parameter -O3 ${CMAKE_CXX_FLAGS}")
 
-add_executable(tifflib tifflib.cpp)
-target_sources(tifflib PRIVATE
-  # kitty-canvas.h    kitty-canvas.cc
-)
+# Actual executable
+message("-- Adding: tifflib")
+set(sources tifflib.cpp kitty_util.h kitty_util.cpp gl_util.h gl_util.cpp)
+add_executable(tifflib ${sources})
 
-target_link_libraries(tifflib Threads::Threads)
-target_link_libraries(tifflib PkgConfig::CXXOPTS)
-target_include_directories(tifflib PRIVATE ${CMAKE_BINARY_DIR}/src)
+# Linking libraries
+target_link_libraries(
+  tifflib
+  ${CXXOPTS}
+  ${X11}
+  glfw
+  OpenGL
+  GLEW
+  openslide)
 
-target_compile_features(tifflib PRIVATE cxx_std_14)
+# Dont know why
+target_link_libraries(tifflib ${CMAKE_DL_LIBS})
 
-if(WITH_OPENSLIDE_SUPPORT)
-  target_sources(tifflib PUBLIC openslide-source.h openslide-source.cc)
-  target_compile_definitions(tifflib PUBLIC WITH_TIMG_OPENSLIDE_SUPPORT)
-  target_link_libraries(tifflib PkgConfig::OPENSLIDE
-    PkgConfig::AVUTIL
-    PkgConfig::SWSCALE)
-endif()
-
-install(TARGETS tifflib
-  RUNTIME DESTINATION bin
-)
+# copy font file to the build directory
+add_custom_command(
+  TARGET ${CMAKE_PROJECT_NAME}
+  POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/verdana.ttf
+          ${CMAKE_CURRENT_BINARY_DIR}/verdana.ttf)
