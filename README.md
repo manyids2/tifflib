@@ -5,5 +5,6 @@ Finally, serve over webserver, terminal, etc.
 
 ## todos
 
-- [x] read using openslide
-- [ ] show thumbnail using kitty
+- [✔] read using openslide
+- [✔] make kitty loop work, exit with `q`
+- [] show thumbnail using kitty

@@ -37,19 +37,13 @@ private:
   bool validSlideprops = false;
 
   // Private functions
-  void initGLFW();
-  void initWindow();
   void initShaders();
   void initVertices(int width, int height);
 
 public:
-  GLFWwindow *window;
-
   // Variables
   const int width = 500;
   const int height = 500;
-  int framebufferWidth = 500;
-  int framebufferHeight = 500;
   uint compression = 0;
   uint millis = 10;
 
@@ -65,11 +59,7 @@ public:
   Window(const int width, const int height);
   virtual ~Window();
 
-  void updateDt();
-  void updateKeyboardInput();
   void clear();
-  void update();
-  void render();
 
   // Accessors
   inline bool getShowing() { return this->showing; };

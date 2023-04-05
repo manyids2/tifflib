@@ -34,18 +34,8 @@ int getBoxGridVerticesIndices(float *gridVertices, unsigned int *gridIndices,
   return 4;
 }
 
-// GLFW stuff
-void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
-  glViewport(0, 0, width, height);
-}
-
 Window::Window(const int width, const int height)
     : width(width), height(height) {
-  // Init variables
-  this->window = nullptr;
-  this->framebufferWidth = width;
-  this->framebufferHeight = height;
-
   this->posX = 0.0;
   this->posY = 0.0;
   this->scale = 1.0;
@@ -73,26 +63,6 @@ Window::Window(const int width, const int height)
     fprintf(stderr, "OSMesaMakeCurrent failed!\n");
     exit(1);
   }
-
-  // Open the window
-  /* fprintf(stderr, "Initializing GLFW\n"); */
-  /* this->initGLFW(); */
-  /* fprintf(stderr, "Inited GLFW\n"); */
-
-  /* fprintf(stderr, "Initializing Window\n"); */
-  /* this->initWindow(); */
-  /* fprintf(stderr, "Inited Window\n"); */
-  /* this->showing = false; */
-  /**/
-  /* // Shaders */
-  /* fprintf(stderr, "Initializing Shaders\n"); */
-  /* this->initShaders(); */
-  /* fprintf(stderr, "Inited Shaders\n"); */
-  /**/
-  /* // Initialize with window params */
-  /* fprintf(stderr, "Initializing Vertices\n"); */
-  /* this->initVertices(this->width, this->height); */
-  /* fprintf(stderr, "Inited Vertices\n"); */
 }
 
 Window::~Window() {
@@ -101,28 +71,19 @@ Window::~Window() {
   /* glDeleteBuffers(1, &this->EBO); */
   /* glDeleteProgram(this->shaderProgram); */
   /**/
-  /* glfwDestroyWindow(this->window); */
-  /* glfwTerminate(); */
 
   OSMesaDestroyContext(this->ctx);
   free(this->buffer);
 }
 
-void Window::initGLFW() {
-  if (glfwInit() == GLFW_FALSE) {
-    std::cout << "ERROR::GLFW_INIT_FAILED" << std::endl;
-    glfwTerminate();
-  }
-}
-
 void Window::initShaders() {
   // build and compile our shader program
-  std::cout << "Initing ::Shader" << std::endl;
-  Shader ourShader("../include/shaders/viewShader.vs",
-                   "../include/shaders/viewShader.fs");
-  this->shaderProgram = ourShader.ID;
-  std::cout << "Using ::Shader" << std::endl;
-  ourShader.use();
+  std::cout << "Skipping ::Shader" << std::endl;
+  /* Shader ourShader("../include/shaders/viewShader.vs", */
+  /*                  "../include/shaders/viewShader.fs"); */
+  /* this->shaderProgram = ourShader.ID; */
+  /* std::cout << "Using ::Shader" << std::endl; */
+  /* ourShader.use(); */
 }
 
 void Window::initVertices(int width, int height) {
@@ -178,61 +139,7 @@ void Window::initVertices(int width, int height) {
   std::cout << "Inited  ::Vertices" << std::endl;
 }
 
-void Window::initWindow() {
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-  glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-  // glfw window creation
-  this->window =
-      glfwCreateWindow(this->width, this->height, "glfw-window", NULL, NULL);
-  if (this->window == NULL) {
-    std::cout << "Failed to create GLFW window" << std::endl;
-    glfwTerminate();
-  }
-
-  /* // Support for resize */
-  /* glfwGetFramebufferSize(this->window, &this->framebufferWidth, */
-  /*                        &this->framebufferHeight); */
-  /* glfwSetFramebufferSizeCallback(window, framebuffer_size_callback); */
-
-  // IMPORTANT !!! apparently
-  glfwMakeContextCurrent(this->window);
-
-  if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-    std::cout << "Failed to initialize GLAD" << std::endl;
-    glfwTerminate();
-  }
-}
-
-// Functions
-void Window::updateDt() {
-  this->curTime = static_cast<float>(glfwGetTime());
-  this->dt = this->curTime - this->lastTime;
-  this->lastTime = this->curTime;
-}
-
-void Window::updateKeyboardInput() {
-  if (glfwGetKey(this->window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
-    glfwSetWindowShouldClose(this->window, true);
-    this->showing = false;
-    this->dirty = true;
-  }
-}
-
-void Window::update() {
-  glfwPollEvents();
-  this->updateDt();
-  this->updateKeyboardInput();
-}
-
 void Window::clear() {
   glClearColor(1.f, 0.f, 0.f, 1.f);
   glClear(GL_COLOR_BUFFER_BIT);
-}
-
-void Window::render() {
-  if (this->dirty) {
-    glfwSwapBuffers(window);
-  }
 }

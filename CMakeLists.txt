@@ -18,8 +18,8 @@ find_package(OpenGL REQUIRED)
 find_package(OSMesa REQUIRED)
 
 find_package(Threads REQUIRED)
-find_package(X11 REQUIRED)
-find_package(glfw3 REQUIRED)
+# find_package(X11 REQUIRED)
+# find_package(glfw3 REQUIRED)
 pkg_check_modules(OPENSLIDE IMPORTED_TARGET REQUIRED openslide)
 pkg_check_modules(CXXOPTS IMPORTED_TARGET REQUIRED cxxopts)
 

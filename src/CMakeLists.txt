@@ -32,7 +32,7 @@ target_link_libraries(
   ${X11}
   OSMesa
   "glad"
-  glfw
+  # glfw
   OpenGL
   GLEW
   openslide)

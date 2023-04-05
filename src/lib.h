@@ -1,8 +1,10 @@
 #pragma once
 
 #include "../include/glad/glad.h"
-#include <GL/osmesa.h>
-#include <GLFW/glfw3.h>
+#define GL_GLEXT_PROTOTYPES
+#include "GL/osmesa.h"
+#include <GL/gl.h>
+#include <GL/glext.h>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -11,5 +13,5 @@
 #include <algorithm>
 #include <iostream>
 
-#include "shader.h"
+/* #include "shader.h" */
 #include "kitty_util.h"
