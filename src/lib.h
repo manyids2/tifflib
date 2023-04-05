@@ -14,4 +14,5 @@
 #include <iostream>
 
 /* #include "shader.h" */
+#include "gl_util.h"
 #include "kitty_util.h"

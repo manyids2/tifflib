@@ -29,12 +29,10 @@ add_executable(tifflib ${sources})
 target_link_libraries(
   tifflib
   ${CXXOPTS}
-  ${X11}
-  OSMesa
   "glad"
   # glfw
-  OpenGL
-  GLEW
+  OSMesa
+  # OpenGL GLEW
   openslide)
 
 # Dont know why
